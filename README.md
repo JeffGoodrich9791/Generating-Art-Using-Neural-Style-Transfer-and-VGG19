@@ -1,6 +1,7 @@
 # Generating-Art-Using-Neural-Style-Transfer-and-VGG19
 ## Deep Learning & Art: Neural Style Transfer 
 
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/First ConvNet Artwork.png" />
 
 ### Summary
 
