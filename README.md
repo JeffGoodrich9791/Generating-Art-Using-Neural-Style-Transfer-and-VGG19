@@ -5,7 +5,7 @@
 
 ### Summary
 
-The goal of this project was to utilize the Nerual Style Transfer (NST) algorithms to generate a unique artwork from two input images. The two images for input were the "content component" image and the "style component" image. The content component images is what the convolutional neural network (CNN) used as structure for the image genteration. The style component image was then combined with the content image in several different layers of the CNN. Each layer of the CNN acts as a filter to extract certain features or attributes of each feature such as texture, corners, small shapes, or repeating color patterns. The lower level dimensionality features of the input images are filtered and learned in the first few layers of the CNN. These layers would be responsible for noticing color patterns and small repeating patterns. The higher level dimensionality features responsible for actual content creation such as buildings, and objects are filtered and learned in higher level layers of the CNN. Of course some of the layers responsible for both content and style overlap in the CNN, and this is where the NST actually takes place. 
+The goal of this project was to utilize the Nerual Style Transfer (NST) algorithms to generate a unique artwork from two input images. The two images for input were the "content component" image and the "style component" image. The content component images is what the convolutional neural network (CNN) used as structure for the image generation. The style component image was then combined with the content image in several different layers of the CNN. Each layer of the CNN acts as a filter to extract certain features or attributes of each feature such as texture, corners, small shapes, or repeating color patterns. The lower level dimensionality features of the input images are filtered and learned in the first few layers of the CNN. These layers would be responsible for noticing color patterns and small repeating patterns. The higher level dimensionality features responsible for actual content creation such as buildings, and objects are filtered and learned in higher level layers of the CNN. Of course some of the layers responsible for both content and style overlap in the middle layers of the CNN, and this is where the NST actually takes place. 
 
 The original arrangement of the photograph content is preserved, while the colors and minor structures that compose the style  become entangled. Therefore the generated image has a new unique style even though it shows the same content as the original photograph. 
 
@@ -18,7 +18,7 @@ Template code is provided in the `Generating Art Using Neural Style Transfer and
 
 The VGG19 network used has already been pre-trained on a large number of images from the ImageNet database therefore it has learned the weights for low-level features and high-level features. The NST algorithm is developed by computing the cost of the content image, cost of the style image, and finally the cost of the generated image. The cost function of the style implements the Gram Matrix in the computation, also called the style matrix.  
 
-The cost of the content is computed using the content image (C) and generated image (G):
+The cost of the content is computed using the content image (C) and generated image (G) and their repctive activation function outputs (a):
 
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_content.png" />
 
