@@ -16,12 +16,12 @@ Template code is provided in the `Generating Art Using Neural Style Transfer and
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/louvre.jpg" />
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/sandstone.jpg" />
 
-For each of the 5 bounding boxes in each of the 19 X 19 cells, the elementwise product is computed to get a probability that the box contains a each of the 80 classes trained into the model. This produces a "score" for each cell as they scanned across the image. A threshold value is used to filter the scores so that only the scores above the threshold are significant. The threshold value used in the model was 0.6. 
+The VGG19 network used has already been pre-trained on a large number of images from the ImageNet database therefore it has learned the weights for low-level features and high-level features. The NST algorithm is developed by computing the cost of the content image, cost of the style image, and finally the cost of the generated image. The cost function of the style implements the Gram Matrix in the computation, also called the style matrix.  
 
-After filtering by thresholding over the classes scores, you still end up a lot of overlapping boxes. A second filter for selecting the right boxes is called non-maximum suppression (NMS). Non-maximum supression uses Intersection over Union (IoU) to select the highest probability out of the remaining bounding boxes. 
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_content.jpg" />
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Gram_matrix.jpg" />
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_style.jpg" />
 
-
-<img src= "https://github.com/JeffGoodrich9791/YOLOv2_Autonomous_Vehicle_Image_Detection/blob/master/NMS.png" />
 
 The output of yolo_model is a (m, 19, 19, 5, 85) tensor that needs to pass through non-trivial processing and conversion. The following cell does that for you.
 
