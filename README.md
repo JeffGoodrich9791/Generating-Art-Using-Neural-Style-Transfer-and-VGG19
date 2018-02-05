@@ -20,10 +20,11 @@ The VGG19 network used has already been pre-trained on a large number of images 
 
 The cost of the content is computed using the content image (C) and generated image (G):
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_content.png" />
+
 The Gram Matrix, is computed: 
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Gram_matrix.png" />
 
-The cost of the style is computed using the style image (S) and generated image (G):
+The cost of the style is computed using the style image (S) and generated image (G) and the mean squared error of the Gram Matrix:
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_style.png" />
 
 
