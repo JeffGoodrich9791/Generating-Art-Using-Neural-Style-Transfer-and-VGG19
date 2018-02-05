@@ -18,7 +18,7 @@ Template code is provided in the `Generating Art Using Neural Style Transfer and
 
 The VGG19 network used has already been pre-trained on a large number of images from the ImageNet database therefore it has learned the weights for low-level features and high-level features. The NST algorithm is developed by computing the cost of the content image, cost of the style image, and finally the cost of the generated image. The cost function of the style implements the Gram Matrix in the computation, also called the style matrix.  
 
-The cost of the content is computed using the content image (C) and generated image (G) and their repctive activation function outputs (a):
+The cost of the content is computed using the content image (C) and generated image (G) and their respective activation function outputs (a):
 
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_content.png" />
 
