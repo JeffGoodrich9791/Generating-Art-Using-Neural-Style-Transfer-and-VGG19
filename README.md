@@ -30,7 +30,12 @@ The cost of the style is computed using the style image (S) and generated image 
 
 <img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jcost_style.png" />
 
+Finally we compute the Total Cost using both the content cost and the style cost. This will be used with backpropagation and stochaistic gradient descent (SGD) to optimize the synthesis between the two images. 
 
+
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Jtotal.png" />
+
+The Total Cost is then set up and run in a Tensorflow session and optimized using Adam Optimization over the VGG19 network. 
 
 ### Run
 
