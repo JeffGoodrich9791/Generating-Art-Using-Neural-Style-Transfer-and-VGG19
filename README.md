@@ -13,8 +13,8 @@ The original arrangement of the photograph content is preserved, while the color
 ### Model
 
 Template code is provided in the `Generating Art Using Neural Style Transfer and VGG19.ipynb` notebook file. The VGG19 model consists of 19 layers and was constructed using Python 3 and Tensorflow in an iPyton Notebook. The input images were of shape 400px X 300px X 3 (rgb). The input images are used are displayed below:
-<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/louvre.jpg" />
-<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/sandstone.jpg" />
+<img width = "100" src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/louvre.jpg" />
+<img width = "100" src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/sandstone.jpg" />
 
 The VGG19 network used has already been pre-trained on a large number of images from the ImageNet database therefore it has learned the weights for low-level features and high-level features. The NST algorithm is developed by computing the cost of the content image, cost of the style image, and finally the cost of the generated image. The cost function of the style implements the Gram Matrix in the computation, also called the style matrix.  
 
