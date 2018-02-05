@@ -10,15 +10,11 @@ The goal of this project was to utilize the Nerual Style Transfer (NST) algorith
 The original arrangement of the photograph content is preserved, while the colors and minor structures that compose the style  become entangled. Therefore the generated image has a new unique style even though it shows the same content as the original photograph. 
 
 
-The dataset was provided by Drive.ai which is a company building software of self-driving vehicles. The detection algorithm consists of 80 different classes of objects, each with 5 bounding boxes computing probabilities of the object. For efficiency we used a model with pre-trained weights which come from the official YOLO website, and were converted using a function written by Allan Zelener (YAD2K: Yet Another Darknet 2 Keras).
-
-<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/Louvre.jpg" />
-
 ### Model
 
-Template code is provided in the `YOLO_Autonomous_Driving_Image_Detection.ipynb` notebook file. The layers of the network were constructed using Python 3 and Keras backend in an iPyton Notebook. The input is a batch of images of shape 608px X 608px X 3 (rgb) which is run through a Deep Convolutional Neural Network (D-CNN) with a reduction factor of 32. The output is a list of bounding boxes with a shape of 19 X 19 X 425, where 425 is the flattening of 80 classes with 5 anchor boxes each. The first 5 variables in the vector includes the probability (Pc), bounding box x-coord (bx), bounding box y-coord (by), bounding box hieght (bh), bounding box width (bw) followed by the classes (c).  
-
-<img src= "https://github.com/JeffGoodrich9791/YOLOv2_Autonomous_Vehicle_Image_Detection/blob/master/Encoding_DeepCNN.png" />
+Template code is provided in the `Generating Art Using Neural Style Transfer and VGG19.ipynb` notebook file. The VGG19 model consists of 19 layers and was constructed using Python 3 and Tensorflow in an iPyton Notebook. The input images were of shape 400px X 300px X 3 (rgb). The input images are used are displayed below:
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/louvre.jpg" />
+<img src= "https://github.com/JeffGoodrich9791/Generating-Art-Using-Neural-Style-Transfer-and-VGG19/blob/master/sandstone.jpg" />
 
 For each of the 5 bounding boxes in each of the 19 X 19 cells, the elementwise product is computed to get a probability that the box contains a each of the 80 classes trained into the model. This produces a "score" for each cell as they scanned across the image. A threshold value is used to filter the scores so that only the scores above the threshold are significant. The threshold value used in the model was 0.6. 
 
