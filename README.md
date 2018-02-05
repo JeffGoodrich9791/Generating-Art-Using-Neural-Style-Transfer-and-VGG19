@@ -39,41 +39,48 @@ The Total Cost is then set up and run in a Tensorflow session and optimized usin
 
 ### Run
 
-The output of yolo_model is a (m, 19, 19, 5, 85) tensor that needs to pass through non-trivial processing and conversion. The following cell does executes this. 
-
-> yolo_outputs = yolo_head(yolo_model.output, anchors, len(class_names))
-
-The yolo_outputs produced all of the predicted boxes of yolo_model in the correct format. Now the the ouptuts need to be filtered using this command. 
-
-> scores, boxes, classes = yolo_eval(yolo_outputs, image_shape)
-
-The prediction for the new image is then run through the following code: 
-
->  Preprocess your image
-    image, image_data = preprocess_image("images/" + image_file, model_image_size = (608, 608))
-
+> def model_nn(sess, input_image, num_iterations = 160):
     
-    out_scores, out_boxes, out_classes = sess.run([scores, boxes, classes], feed_dict = {yolo_model.input: image_data,    K.learning_phase():0})
+    # Initialize global variables (you need to run the session on the initializer)
+    ### START CODE HERE ### (1 line)
+    sess.run(tf.global_variables_initializer())
     ### END CODE HERE ###
-
-    # Print predictions info
-    print('Found {} boxes for {}'.format(len(out_boxes), image_file))
-    # Generate colors for drawing bounding boxes.
-    colors = generate_colors(class_names)
-    # Draw bounding boxes on the image file
-    draw_boxes(image, out_scores, out_boxes, out_classes, class_names, colors)
-    # Save the predicted bounding box on the image
-    image.save(os.path.join("out", image_file), quality=90)
-    # Display the results in the notebook
-    output_image = scipy.misc.imread(os.path.join("out", image_file))
-    imshow(output_image)
     
-    return out_scores, out_boxes, out_classes
+    # Run the noisy input image (initial generated image) through the model. Use assign().
+    ### START CODE HERE ### (1 line)
+    sess.run(model['input'].assign(input_image))
+    ### END CODE HERE ###
+    
+    for i in range(num_iterations):
+    
+        # Run the session on the train_step to minimize the total cost
+        ### START CODE HERE ### (1 line)
+        _ = sess.run(train_step)
+        ### END CODE HERE ###
+        
+        # Compute the generated image by running the session on the current model['input']
+        ### START CODE HERE ### (1 line)
+        generated_image = sess.run(model['input'])
+        ### END CODE HERE ###
+
+        # Print every 20 iteration.
+        if i%20 == 0:
+            Jt, Jc, Js = sess.run([J, J_content, J_style])
+            print("Iteration " + str(i) + " :")
+            print("total cost = " + str(Jt))
+            print("content cost = " + str(Jc))
+            print("style cost = " + str(Js))
+            
+            # save current generated image in the "/output" directory
+            save_image("output/" + str(i) + ".png", generated_image)
+    
+    # save last generated image
+    save_image('output/generated_image.jpg', generated_image)
+    
+    return generated_image
 
 
 ### Results
 
-> out_scores, out_boxes, out_classes = predict(sess, "test.jpg")
-
-<img src= "https://github.com/JeffGoodrich9791/YOLOv2_Autonomous_Vehicle_Image_Detection/blob/master/Bounding_Box_Output.png" /> 
+The resulting output image after 160 iterations is displayed above the summary. Possibly better articulation of features could have been achieved using higher iterations in the 200+ number but I was satisfied with the style of the outcome using 160 iterations. 
 
